@@ -5,25 +5,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const express_1 = __importDefault(require("express"));
+const express = require('express');
+const app = express();
 //↓サーバーを作る場所
 const cors_1 = __importDefault(require("cors"));
 const nodemailer = require('nodemailer');
 const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
 const path = require('path');
-const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
 // const server:http.Server=new http.Server(app)
-app.use(express_1.default.json({ limit: "32mb" }));
-app.use(express_1.default.urlencoded({ extended: true, limit: "32mb" }));
+app.use(express.json({ limit: "32mb" }));
+app.use(express.urlencoded({ extended: true, limit: "32mb" }));
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     next();
 });
 app.use((0, cors_1.default)());
 // app.use(express.static(__dirname + '/dist'));
-app.use(express_1.default.static(path.join(__dirname, '../client/public')));
+app.use(express.static(path.join(__dirname, '../client/public')));
 // send the user to index html page inspite of the url
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/index.html'));

@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config()
-import express from 'express'
+const express=require('express')
+const app = express()
 //↓サーバーを作る場所
 import cors from "cors";
 const nodemailer = require('nodemailer');
@@ -10,7 +11,6 @@ import http, { request } from "http";
 const path = require('path');
 
 
-const app=express();
 const port = process.env.PORT || 3000;
 // const server:http.Server=new http.Server(app)
 
