@@ -1,15 +1,14 @@
 import dotenv from "dotenv";
 dotenv.config()
-const express=require('express')
-const app = express()
 //↓サーバーを作る場所
 import cors from "cors";
+const express=require('express')
+const app = express()
 const nodemailer = require('nodemailer');
 const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
 import http, { request } from "http";
-const path = require('path');
-
+const path = require('path'); 
 
 const port = process.env.PORT || 3000;
 // const server:http.Server=new http.Server(app)
@@ -97,7 +96,7 @@ const sendEmail=({recipient_email, subject, message,fullName}:Mailer)=>{
 }
 
 
-app.post("/send",async(req: express.Request, res: express.Response)=>{
+app.post("/send",async(req, res)=>{
 try{
     const {recipient_email,subject,message,fullName}=req.body
     sendEmail({recipient_email,subject,message,fullName})
