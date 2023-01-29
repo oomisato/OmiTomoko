@@ -90,37 +90,9 @@ type GLTFResult=GLTFLoader & {
     const group=useRef<THREE.Group>(null!)
     const {nodes,materials,animations,scene}=useGLTF('./public/mansion2.glb')as unknown as GLTFResult
     const {actions,mixer}=useAnimations(animations,group)
-//   useFrame((state)=>{
-//     const et = state.clock.elapsedTime
 
-// group.current.position.y=Math.sin((et+1*1000)/2)*1
-// group.current.rotation.x=Math.sin((et+1*2000)/3)/10
-// group.current.rotation.y = Math.cos((et + 1 * 2000) / 2) / 10
-// group.current.rotation.z = Math.sin((et + 1 * 2000) / 3) / 10
-// })
-// const meshRef=useRef<THREE.Mesh>()
 const [thunder, setLight]=useState<boolean>(false);
-// const [zoom, setZoom] = useState(false);
-// const [focus, setFocus] = useState(true);
-// const zoomToView = (meshRef: React.MutableRefObject<THREE.Mesh<THREE.BufferGeometry, THREE.Material | THREE.Material[]> | undefined>) => {
-//     setZoom(!zoom);
-//     setFocus(meshRef.current.position);
-//   };
-//   const vec = new THREE.Vector3();
-//   useFrame((state) => {
-//     const step = 0.05;
 
-//     /*
-//     Need to find some way to lerp the lookAt
-//     */
-
-//     zoom ? vec.set(focus.x, focus.y, focus.z + 0.2) : vec.set(0, 0, 5);
-//     //
-//     state.camera.position.lerp(vec, step);
-//     state.camera.lookAt(0, 0, 0);
-//     // Update to new position/lookAt
-//     state.camera.updateProjectionMatrix();
-//   });
 useEffect(() => {
 
     
@@ -152,15 +124,6 @@ useEffect(() => {
           </div>
           </Ballon>
         </Tag>
-      {/* <mesh castShadow receiveShadow  
-      geometry={nodes.mansion.geometry} >
-        <meshStandardMaterial 
-         map={colorMap}
-         normalMap={normalMap}
-         roughnessMap={roughnessMap}
-         aoMap={aoMap}
-         />
-      </mesh> */}
 
       <mesh 
     //   ref={meshRef}

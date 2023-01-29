@@ -39,9 +39,11 @@ font-family:${theme.logoFontFamily};
 font-size:${theme.fontBig};
 top:20vh;
 margin:10px;
+left:15vw;
+
 font-weight:600;
 mix-blend-mode: hard-light;
-color:${theme.body};
+color:${theme.bodyDarkBlue};
 @media ${theme.device.mobileS}{
     font-size:${theme.fontsm};
     top:90vh;
@@ -106,7 +108,7 @@ margin:0;
     padding:2em;
     word-wrap: break-word;
     line-height: 1.5;
-    font-size:${theme.fontmd};
+    font-size:${theme.fontsm};
         @media ${theme.device.tablet} { 
             font-size:${theme.fontxs};
             padding:0.5em;

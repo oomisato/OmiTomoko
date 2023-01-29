@@ -37,7 +37,7 @@ const Ul=styled.ul<Props>`
     @media ${theme.device.tablet}{
         // display:none;
         flex-flow:column nowrap;
-        background-color:${theme.text};
+        background-color:${theme.bodyDarkBlue};
         position:fixed;
         transform:${(props)=>props.$open ? 'translateX(0)' : 'translateX(100%)'};
         top:0;

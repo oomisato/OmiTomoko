@@ -130,7 +130,7 @@ span{
   margin:0;
   font-size:0.5em;
   // letter-spacing: 0;
-  font-weight:500;
+  font-weight:600;
 }
 `
 
@@ -165,10 +165,12 @@ div:nth-child(1){
   background-color:${theme.body}
 }
 div:nth-child(2){
-  background-color:${theme.body}
+  background: linear-gradient(45deg, ${theme.body} 0% 70%, #FFFC65 85%, ${theme.body} 90% 100%);
+  // background-color:${theme.body}
 }
 div:nth-child(3){
-  background-color:${theme.bodyDarkYellow}
+  background: linear-gradient(45deg, ${theme.bodyDarkYellow} 0%,#F7D46A 20%, ${theme.bodyDarkYellow} 30% 100%);
+  // background-color:${theme.bodyDarkYellow}
 }
 div:nth-child(4){
   @media ${theme.device.tablet} {background:none; };

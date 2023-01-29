@@ -13,7 +13,7 @@ interface Message{
 }
 const validateEmail=({recipient_email,setEmailError}:Mail)=>{
     const emailRegular="/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;"
-return recipient_email && !recipient_email.match(emailRegular) ? 
+return recipient_email && recipient_email.match(emailRegular) ? 
 setEmailError("Email not valid") :
 setEmailError("")
 }

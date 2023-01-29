@@ -155,8 +155,8 @@ useEffect(()=>{
     gsap.fromTo(groupRef.current.rotation,{y:-3.1},{y:0,
         scrollTrigger:{ 
             ...scrollConfig,
-            start:'30% top',
-            end:'33% top',
+            start:'20% top',
+            end:'30% top',
             // scrub:1,
         }
     });
@@ -164,8 +164,8 @@ useEffect(()=>{
     gsap.fromTo(camera.position,{z:10},{z:5,
         scrollTrigger:{ 
             ...scrollConfig,
-            start:'33% top',
-            end:'40% top',
+            start:'30% top',
+            end:'35% top',
             }
     });
 
@@ -301,19 +301,6 @@ const size = useAspect(1800, 1000)
 
                 </mesh>
 
-{/* </group> */}
-
-
-
-                            {/* <group>
-                            <mesh  castShadow receiveShadow dispose={null}  >
-                            <planeGeometry args={ [2,1.1,1]} />
-                            <VideoMaterial src={tracks[trackNum]} glitch={glitch} {...stencil}/>
-                            </mesh>
-                            </group> */}
-
-
-
 
           
 <fog attach="fog" color="white" near={8} far={13} />
@@ -334,7 +321,7 @@ const size = useAspect(1800, 1000)
     )
 }
 
-useGLTF.preload('/monitor.gltf')
+useGLTF.preload('/public/monitor.gltf')
 
 
 
@@ -356,14 +343,7 @@ type VideoTextureProps = {
   }
 
  function  MaskedVideoMaterial({src,glitch,play}:PlayVideo, props: Partial<VideoTextureProps>) {
-    // const { unsuspend, start, crossOrigin, muted, loop } = {
-    //   unsuspend: 'canplay',
-    //   crossOrigin: 'Anonymous',
-    //   muted: true,
-    //   loop: true,
-    //   start: true
-    // }
-    // const { invert } = useControls({ invert: false })
+
 
     const stencil = useMask(1)
     const texture =  useVideoTexture(src,props)

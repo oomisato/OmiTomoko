@@ -66,14 +66,7 @@ type GLTFResult=GLTFLoader & {
   }
   
   export default function Product({position}:ProductProps){
-    const textureNum=(type:string)=>`./public/textures/shoe_${type}.png`
-    // const [colorMap,normalMap,roughnessMap,aoMap]=useLoader(TextureLoader,[
-    //   textureNum(name,'color'),
-    //   textureNum(name,'normal'),
-    //   textureNum(name,'roughness'),
-    //   textureNum(name,'AO'),
-      
-    // ])
+
     const group=useRef<THREE.Group>(null!)
     const {nodes,materials,animations,scene}=useGLTF('./public/shoeanime3.glb')as unknown as GLTFResult
     const {actions,mixer}=useAnimations(animations,group)
@@ -102,13 +95,7 @@ useEffect(() => {
         3D Lover
           </Ballon>
         </Tag>
-      {/* <mesh castShadow receiveShadow  
-      geometry={nodes[name].geometry} >
-        <meshStandardMaterial 
-         map={colorMap}
-         roughnessMap={roughnessMap}
-         aoMap={aoMap}/>
-      </mesh> */}
+
 
       <mesh castShadow receiveShadow  
       geometry={nodes.shoe.geometry} 
