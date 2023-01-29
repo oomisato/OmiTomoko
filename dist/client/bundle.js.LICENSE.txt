@@ -120,9 +120,9 @@
  */
 
 /**
- * postprocessing v6.29.1 build Thu Oct 27 2022
+ * postprocessing v6.29.3 build Sun Jan 01 2023
  * https://github.com/pmndrs/postprocessing
- * Copyright 2015-2022 Raoul van Rüschen
+ * Copyright 2015-2023 Raoul van Rüschen
  * @license Zlib
  */
 
