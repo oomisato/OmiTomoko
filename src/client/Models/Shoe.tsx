@@ -68,7 +68,7 @@ type GLTFResult=GLTFLoader & {
   export default function Product({position}:ProductProps){
 
     const group=useRef<THREE.Group>(null!)
-    const {nodes,materials,animations,scene}=useGLTF('./public/shoeanime3.glb')as unknown as GLTFResult
+    const {nodes,materials,animations,scene}=useGLTF('./public/SHOElow.glb')as unknown as GLTFResult
     const {actions,mixer}=useAnimations(animations,group)
 //   useFrame((state)=>{
 //     const et = state.clock.elapsedTime
@@ -111,7 +111,7 @@ useEffect(() => {
       </group>
       )
     }
-    useGLTF.preload('./public/shoeanime3.glb')
+    useGLTF.preload('./public/SHOElow.glb')
 
 
 

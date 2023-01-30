@@ -88,7 +88,7 @@ type GLTFResult=GLTFLoader & {
       
     // ])
     const group=useRef<THREE.Group>(null!)
-    const {nodes,materials,animations,scene}=useGLTF('./public/mansion2.glb')as unknown as GLTFResult
+    const {nodes,materials,animations,scene}=useGLTF('./public/MANSIONlow.glb')as unknown as GLTFResult
     const {actions,mixer}=useAnimations(animations,group)
 
 const [thunder, setLight]=useState<boolean>(false);
@@ -136,7 +136,7 @@ useEffect(() => {
       </group>
       )
     }
-    useGLTF.preload('./public/mansion.glb')
+    useGLTF.preload('./public/MANSIONlow.glb')
 
 
 
