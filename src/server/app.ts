@@ -23,12 +23,14 @@ app.use((req,res,next)=>{
 app.use(cors());
 
 // app.use(express.static(__dirname + '/dist'));
+app.use(express.static(path.join(__dirname, '../../dist/client/images')));
 
-app.use(express.static(path.join(__dirname, '../client/public')));
+app.use(express.static(path.join(__dirname, '../../dist/client/public')));
 
 // send the user to index html page inspite of the url
+// ../client/index.html
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client/index.html'));
+  res.sendFile(path.resolve(__dirname, '../../dist/client/index.html'));
 }); 
 
 type Mailer={

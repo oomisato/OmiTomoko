@@ -351,7 +351,6 @@ type VideoTextureProps = {
 texture.wrapT = THREE.ClampToEdgeWrapping
 
 
-    const {nodes,materials}=useGLTF('/monitor.gltf') as unknown as GLTFResult
 
     return <>
 

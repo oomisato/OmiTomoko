@@ -9,7 +9,7 @@ dotenv_1.default.config();
 const cors_1 = __importDefault(require("cors"));
 const express = require('express');
 const app = express();
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
 const path = require('path');
@@ -23,16 +23,19 @@ app.use((req, res, next) => {
 });
 app.use((0, cors_1.default)());
 // app.use(express.static(__dirname + '/dist'));
+app.use(express.static(path.join(__dirname, '../client/images')));
 app.use(express.static(path.join(__dirname, '../client/public')));
 // send the user to index html page inspite of the url
-app.get('*', (req, res) => {
+// ../client/index.html
+app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/index.html'));
 });
-const myOAuth2Client = new OAuth2(process.env.CLIENT_ID, process.env.CLIENT_SECRET, "https://developers.google.com/oauthplayground");
+var myOAuth2Client = new OAuth2(process.env.CLIENT_ID, process.env.CLIENT_SECRET, "https://developers.google.com/oauthplayground");
+const myAccessToken = myOAuth2Client.getAccessToken();
 myOAuth2Client.setCredentials({
+    access_token: myAccessToken,
     refresh_token: process.env.REFRESH_TOKEN
 });
-const myAccessToken = myOAuth2Client.getAccessToken();
 const Email = (options) => {
     let transporter = nodemailer.createTransport({
         service: "gmail",
