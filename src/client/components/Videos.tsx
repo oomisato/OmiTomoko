@@ -1,4 +1,4 @@
-import React, { MouseEvent,forwardRef, MutableRefObject, useEffect, useRef, useState,useContext, SetStateAction, useLayoutEffect } from "react";
+import React, { MouseEvent,forwardRef, MutableRefObject, useEffect, useRef, useState,useContext, SetStateAction, useLayoutEffect, Suspense } from "react";
 import * as THREE from 'three';
 import styled from "styled-components";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
@@ -227,8 +227,11 @@ const size = useAspect(1800, 1000)
     <mesh position={[0,0,-0.05]} rotation={[-0.35/Math.PI,0,0]}>
         {play ? 
             <>
+                  <Suspense fallback={null}> 
+
                 <planeGeometry args={[1.9,1.1,2]} /> 
                 <MaskedVideoMaterial play={play} src={tracks[trackNum]} glitch={glitch} /> 
+                </Suspense>
 
                 <group>
                     <mesh position={[-0.1,-1,5]}>
