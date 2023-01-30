@@ -23,14 +23,12 @@ app.use((req,res,next)=>{
 app.use(cors());
 
 // app.use(express.static(__dirname + '/dist'));
-app.use(express.static(path.join(__dirname, '../../dist/client/images')));
 
-app.use(express.static(path.join(__dirname, '../../dist/client/public')));
+app.use(express.static(path.join(__dirname, '../client')));
 
 // send the user to index html page inspite of the url
-// ../client/index.html
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../../dist/client/index.html'));
+  res.sendFile(path.resolve(__dirname, '../client/index.html'));
 }); 
 
 type Mailer={
@@ -47,8 +45,15 @@ var myOAuth2Client = new OAuth2(
   "https://developers.google.com/oauthplayground"
   )
 
- 
-
+  myOAuth2Client.on('tokens', (tokens) => {
+    console.log("ON TOKENS"); //<-- This is never reached
+    if (tokens.refresh_token) {
+      // store the refresh_token in my database!
+      console.log("Refresh Token: " + tokens.refresh_token);
+    }
+    console.log("New Access Token: " + tokens.access_token);
+  });
+  
   const myAccessToken = myOAuth2Client.getAccessToken()
   myOAuth2Client.setCredentials({
     access_token:myAccessToken,
