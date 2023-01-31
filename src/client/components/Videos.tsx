@@ -115,6 +115,7 @@ export default function Videos(){
         // const { unsuspend, start, crossOrigin, muted, loop } = {
     const[trackNum,setTrackNum]=useState<number>(0)
     const [play,setPlay]=useState<boolean>(false)
+    const [loadComplete,LoadingVid]=useState(false)
     const tracks=["public/pinecone.mp4","public/burn.mp4","public/burger.mp4","public/butterfly.mp4","public/butterfly3.mp4"]
     
     const groupRef=useRef<THREE.Group>(null!)
@@ -131,9 +132,11 @@ export default function Videos(){
 
 
     }
-const changevidMat=()=>{
-    return <MaskedVideoMaterial  play={play} src={tracks[trackNum]} glitch={glitch} />
-}
+    useEffect(()=>{
+    LoadingVid(true)
+},[])
+
+
 const ctrlTracksP=(e:MouseEvent)=>{
     const target=e.target as HTMLInputElement;
     glitchCtroller()
@@ -227,10 +230,13 @@ const size = useAspect(1800, 1000)
     <mesh position={[0,0,-0.05]} rotation={[-0.35/Math.PI,0,0]}>
         {play ? 
             <>
+            {/* masked video now playing */}
                   <Suspense fallback={null}> 
 
                 <planeGeometry args={[1.9,1.1,2]} /> 
+                {loadComplete? 
                 <MaskedVideoMaterial play={play} src={tracks[trackNum]} glitch={glitch} /> 
+             : <meshBasicMaterial/>}
                 </Suspense>
 
                 <group>
@@ -277,9 +283,10 @@ const size = useAspect(1800, 1000)
             </>
 
         : 
+        // play button & preload video 
             <>
             <planeGeometry args={[1.9,1.1,2]} />
-            <meshBasicMaterial/>
+            <MaskedVideoMaterial  play={play} src={tracks[trackNum]} glitch={glitch} /> 
             <mesh position={[0,0,0]}>
                             {/* <planeGeometry args={[1,1,1]}/> */}
                             <Html style={{
@@ -340,8 +347,8 @@ type VideoTextureProps = {
   
   interface PlayVideo{
     src:string;
-    glitch:boolean
-    play:boolean|undefined
+    glitch:boolean;
+    play:boolean|undefined;
 
   }
 
@@ -355,16 +362,16 @@ texture.wrapT = THREE.ClampToEdgeWrapping
 
 
 
-    return <>
+    return (
 
        <meshPhysicalMaterial  {...stencil} 
  map={play ? texture :null} clearcoat={0} 
  clearcoatRoughness={1} 
  toneMapped={false} 
  side={THREE.DoubleSide}/>
- 
 
-</>
+
+　)
 }
 
 
