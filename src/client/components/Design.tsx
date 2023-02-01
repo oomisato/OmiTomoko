@@ -6,7 +6,6 @@ import gsap from "gsap";
 import {scrollConfig} from "../Scroller/Scroller"
 import Asd from '../images/design2.png'
 import Bg from '../images/0122.png'
-import ScrollArrow from '../Scroller/ScrollArrow';
 
 
 gsap.registerPlugin(ScrollTrigger) 
@@ -352,11 +351,11 @@ preserveAspectRatio="none"
      <g  clipPath="url(#theMask)" 
     //   transform="translate(100,2.5) rotate(10)"
       > 
-     {/* <rect x="50" y="50" width="500" height="500" fill="black" /> */}
-      
+    
+    
        
           <image id="scrollImage" href={Asd} y="70" height="400"
-        // style={{ position:"absolute", bottom:0,right: 0,zIndex:1}}
+        style={{ backgroundColor:"red"}}
         />
      </g>
    </svg>

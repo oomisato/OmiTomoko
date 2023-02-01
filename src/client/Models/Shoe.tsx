@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import styled from 'styled-components';
-import {Vector3} from '@react-three/fiber'
+import {useFrame, Vector3} from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { useGLTF,Html,useAnimations } from '@react-three/drei';
 import React, { useEffect, useRef } from 'react';
@@ -68,23 +68,25 @@ type GLTFResult=GLTFLoader & {
   export default function Product({position}:ProductProps){
 
     const group=useRef<THREE.Group>(null!)
-    const {nodes,materials,animations,scene}=useGLTF('./public/SHOElow.glb')as unknown as GLTFResult
+    const {nodes,materials,animations,scene}=useGLTF('./public/SHOEnoanime.gltf')as unknown as GLTFResult
     const {actions,mixer}=useAnimations(animations,group)
-//   useFrame((state)=>{
-//     const et = state.clock.elapsedTime
+ 
+
+// ********************stop animatinon for better performance*************
+// useEffect(() => {
+
+//   actions?.shoeAction?.play()
+//   // scene.traverse((obj:THREE.Mesh) => obj.isMesh && (obj.receiveShadow = obj.castShadow = true))
+// }, [mixer])
+// ***************or use animation with useFrame**************
+// useFrame((state)=>{
+//   const et = state.clock.elapsedTime
 
 // group.current.position.y=Math.sin((et+1*1000)/2)*1
 // group.current.rotation.x=Math.sin((et+1*2000)/3)/10
 // group.current.rotation.y = Math.cos((et + 1 * 2000) / 2) / 10
 // group.current.rotation.z = Math.sin((et + 1 * 2000) / 3) / 10
 // })
-
-
-useEffect(() => {
-
-  actions?.shoeAction?.play()
-  // scene.traverse((obj:THREE.Mesh) => obj.isMesh && (obj.receiveShadow = obj.castShadow = true))
-}, [mixer])
     return(
 
       <group ref={group} dispose={null} position={position}>
@@ -111,7 +113,7 @@ useEffect(() => {
       </group>
       )
     }
-    useGLTF.preload('./public/SHOElow.glb')
+    useGLTF.preload('./public/SHOEnoanime.gltf')
 
 
 

@@ -3,8 +3,10 @@ import React, { useRef,useEffect,useState,forwardRef, useImperativeHandle } from
 import { gsap } from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger"
 import ScrollArrow from "./ScrollArrow";
-import About2 from "../components/About";
+import About from "../components/About";
 import Contact from "../components/Contact";
+import theme from "../Theme";
+
 gsap.registerPlugin(ScrollTrigger)
 
 
@@ -149,10 +151,13 @@ const Scroller=forwardRef<Handler,scrollProps>(({scroll}:scrollProps,ref)=>{
         vidRef.current?.scrollIntoView({behavior: 'smooth'})
     }
 
+
+
     useImperativeHandle(ref,()=>{
         return {
             scrolltoVid(){
              vidRef?.current?.scrollIntoView({behavior: 'smooth'});
+      
          },
          scrolltoDesign(){
             designRef?.current?.scrollIntoView({behavior: 'smooth'});
@@ -199,8 +204,8 @@ const Scroller=forwardRef<Handler,scrollProps>(({scroll}:scrollProps,ref)=>{
         </ScrollTracker>
         <ScrollHeight className="scrollHeight" ref={scrollHeightRef} $height={scrollRangeH * multiplier}>
         <ScrolltoContact ref={contactRef} scrollRangeH={scrollRangeH} multiplier={multiplier}><Contact/></ScrolltoContact>
-            <ScrolltoTop ref={topRef} scrollRangeH={scrollRangeH} multiplier={multiplier}><About2 /></ScrolltoTop>
-            <ScrolltoVid  ref={vidRef}  scrollRangeH={scrollRangeH} multiplier={multiplier}></ScrolltoVid>
+            <ScrolltoTop ref={topRef} scrollRangeH={scrollRangeH} multiplier={multiplier}><About /></ScrolltoTop>
+            <ScrolltoVid  ref={vidRef}  scrollRangeH={scrollRangeH} multiplier={multiplier}><VideoTitle/></ScrolltoVid>
             <ScrolltoDesign ref={designRef} scrollRangeH={scrollRangeH} multiplier={multiplier}></ScrolltoDesign>
             
 
@@ -310,5 +315,32 @@ left: 0;
 height: 100%;
 background: ${(props) => props.$color};
 `
+
+
+const Title=styled.p`
+display:block;
+font-family:${theme.logoFontFamily};
+font-size:10em;
+font-weight:900;
+width:100vh;
+padding:0;
+margin:0;
+line-height: 1;
+color:${theme.bodyDarkYellow};
+text-align:right;
+@media ${theme.device.laptop}{
+  font-size:3em;
+};
+@media ${theme.device.mobileL} { 
+  font-size:2em;
+};
+
+`
+
+const VideoTitle=()=>{
+   return <Title>VIDEOS</Title>
+}
+
+
 
 export default Scroller

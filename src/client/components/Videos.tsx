@@ -1,4 +1,4 @@
-import React, { MouseEvent,forwardRef, MutableRefObject, useEffect, useRef, useState,useContext, SetStateAction, useLayoutEffect, Suspense } from "react";
+import React, { MouseEvent,forwardRef, MutableRefObject, useEffect, useRef, useState,useContext, SetStateAction, useLayoutEffect, Suspense, Ref } from "react";
 import * as THREE from 'three';
 import styled from "styled-components";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
@@ -10,6 +10,7 @@ import {useThree } from "@react-three/fiber";
 import { Glitch, EffectComposer } from "@react-three/postprocessing";
 import { GlitchMode } from "postprocessing";
 import theme from "../Theme";
+import { MeshStandardMaterial, Object3D } from "three";
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -109,19 +110,23 @@ interface GlitchProps{
 
 export default function Videos(){
     const videotitleRef=useRef<THREE.Mesh>(null!)
-
+    const meshRef=useRef() as Ref<MeshStandardMaterial> | undefined
     const {nodes,materials}=useGLTF('public/monitor.gltf') as unknown as GLTFResult
     const [glitch,setGlitch]=useState<boolean>(false)
         // const { unsuspend, start, crossOrigin, muted, loop } = {
     const[trackNum,setTrackNum]=useState<number>(0)
     const [play,setPlay]=useState<boolean>(false)
-    const [loadComplete,LoadingVid]=useState(false)
+    const [monitorVisible,setMonitor]=useState<number>(0)
+    const [transparent,settransparent]=useState<boolean>(false)
+
+
     const tracks=["public/pinecone.mp4","public/burn.mp4","public/burger.mp4","public/butterfly.mp4","public/butterfly3.mp4"]
     
     const groupRef=useRef<THREE.Group>(null!)
     const {camera}=useThree();
     const [visible, setVisible] = useState<boolean>(null!)
     // const controlOcclude=()=>{setVisible(!visible); return null}
+
     const ctrlTracksF=(e: MouseEvent)=>{
     const target=e.target as HTMLInputElement;
     glitchCtroller()
@@ -132,11 +137,9 @@ export default function Videos(){
 
 
     }
-    useEffect(()=>{
-    LoadingVid(true)
-},[])
-
-
+const changevidMat=()=>{
+    return <MaskedVideoMaterial  play={play} src={tracks[trackNum]} glitch={glitch} />
+}
 const ctrlTracksP=(e:MouseEvent)=>{
     const target=e.target as HTMLInputElement;
     glitchCtroller()
@@ -155,20 +158,27 @@ const glitchCtroller=()=>{
 
 
 useEffect(()=>{  
-    gsap.fromTo(groupRef.current.rotation,{y:-3.1},{y:0,
+    gsap.fromTo(groupRef.current.rotation,{
+        y:-3.1,    
+    },{y:0,
         scrollTrigger:{ 
             ...scrollConfig,
             start:'20% top',
             end:'30% top',
             // scrub:1,
-        }
-    });
+        },
+        
+ 
+});
 
-    gsap.fromTo(camera.position,{z:10},{z:5,
+
+
+    gsap.fromTo(camera.position,{z:10,
+    },{z:5,
         scrollTrigger:{ 
             ...scrollConfig,
             start:'30% top',
-            end:'35% top',
+            end:'55% top',
             }
     });
 
@@ -184,18 +194,18 @@ useEffect(()=>{
             }
     });
 
-    gsap.fromTo(videotitleRef.current.position,{
-        y:100,
-        x:-200,
-    },{
-        y:1,
-        x: -1.4,
-        ease: "power4.out",
-        scrollTrigger:{
-        ...scrollConfig,
-        start:'30% top',
-        end:"36% top",
-        }})
+    // gsap.fromTo(videotitleRef.current.position,{
+    //     y:100,
+    //     x:-200,
+    // },{
+    //     y:1,
+    //     x: -1.4,
+    //     ease: "power4.out",
+    //     scrollTrigger:{
+    //     ...scrollConfig,
+    //     start:'30% top',
+    //     end:"36% top",
+    //     }})
 
 },[])
 
@@ -211,32 +221,32 @@ const size = useAspect(1800, 1000)
     <>
     
             <group  dispose={null} ref={groupRef} position={[0,0,-3]}>
-                <mesh  ref={videotitleRef}  >
+                {/* <mesh  ref={videotitleRef}  >
             <meshBasicMaterial/><Html> <Title><h1>VIDEOS</h1></Title></Html>
-            </mesh>
+            </mesh> */}
 
 
 
+{/* *****************monitor model loading******************* */}
 
 
-
-                    <mesh castShadow receiveShadow
-                    geometry={nodes.monitor.geometry}
+                    <mesh  castShadow receiveShadow
+                    geometry={nodes.monitor.geometry }
                     
-                    ><meshStandardMaterial color={`${theme.bodyDarkBlue}`} 
+                    ><meshStandardMaterial ref={meshRef} color={`${theme.bodyDarkBlue}`} 
                     emissive={`${theme.bodyDarkBlue}`}
-                    lightMapIntensity={0.8}/></mesh>
+                    lightMapIntensity={0.8} /></mesh>
 
+                 
+
+{/* *****************monitor model loading******************* */}
     <mesh position={[0,0,-0.05]} rotation={[-0.35/Math.PI,0,0]}>
         {play ? 
             <>
-            {/* masked video now playing */}
                   <Suspense fallback={null}> 
 
                 <planeGeometry args={[1.9,1.1,2]} /> 
-                {loadComplete? 
                 <MaskedVideoMaterial play={play} src={tracks[trackNum]} glitch={glitch} /> 
-             : <meshBasicMaterial/>}
                 </Suspense>
 
                 <group>
@@ -283,10 +293,9 @@ const size = useAspect(1800, 1000)
             </>
 
         : 
-        // play button & preload video 
             <>
             <planeGeometry args={[1.9,1.1,2]} />
-            <MaskedVideoMaterial  play={play} src={tracks[trackNum]} glitch={glitch} /> 
+            <meshBasicMaterial/>
             <mesh position={[0,0,0]}>
                             {/* <planeGeometry args={[1,1,1]}/> */}
                             <Html style={{
@@ -347,8 +356,8 @@ type VideoTextureProps = {
   
   interface PlayVideo{
     src:string;
-    glitch:boolean;
-    play:boolean|undefined;
+    glitch:boolean
+    play:boolean|undefined
 
   }
 
@@ -362,16 +371,16 @@ texture.wrapT = THREE.ClampToEdgeWrapping
 
 
 
-    return (
+    return <>
 
        <meshPhysicalMaterial  {...stencil} 
  map={play ? texture :null} clearcoat={0} 
  clearcoatRoughness={1} 
  toneMapped={false} 
  side={THREE.DoubleSide}/>
+ 
 
-
-　)
+</>
 }
 
 

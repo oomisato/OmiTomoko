@@ -1,0 +1,239 @@
+{
+  "asset": {
+    "generator": "Khronos glTF Blender I/O v3.2.43",
+    "version": "2.0"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [
+        0,
+        1
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "mesh": 0,
+      "name": "monitor",
+      "translation": [
+        -0.000007748603820800781,
+        0.8008196353912354,
+        0.0030900686979293823
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "mesh": 1,
+      "name": "monitorm",
+      "translation": [
+        -0.000007748603820800781,
+        0.8008196353912354,
+        0.0030900686979293823
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "frame",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.0029088391456753016,
+          0.0029088391456753016,
+          0.0029088391456753016,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.13636364042758942
+      },
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "doubleSided": true,
+      "name": "monitor.001",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.17208875715732574,
+          0.8000000715255737,
+          0.4054505228996277,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.5
+      },
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "meshes": [
+    {
+      "name": "moncube",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 1,
+            "NORMAL": 2,
+            "TEXCOORD_0": 3
+          },
+          "indices": 0,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 0,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1,
+                "TEXCOORD_0": 2
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "moncube.001",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 5,
+            "NORMAL": 6,
+            "TEXCOORD_0": 7
+          },
+          "indices": 4,
+          "material": 1,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 1,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1,
+                "TEXCOORD_0": 2
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "accessors": [
+    {
+      "componentType": 5123,
+      "count": 1254,
+      "type": "SCALAR"
+    },
+    {
+      "componentType": 5126,
+      "count": 406,
+      "max": [
+        1.0009771588376282,
+        0.576756893744047,
+        0.11003704439679413
+      ],
+      "min": [
+        -1.0009770396283386,
+        -0.8213868144086122,
+        -0.343309343152356
+      ],
+      "type": "VEC3"
+    },
+    {
+      "componentType": 5126,
+      "count": 406,
+      "type": "VEC3"
+    },
+    {
+      "componentType": 5126,
+      "count": 406,
+      "type": "VEC2"
+    },
+    {
+      "componentType": 5123,
+      "count": 6,
+      "type": "SCALAR"
+    },
+    {
+      "componentType": 5126,
+      "count": 4,
+      "max": [
+        0.9405761884664638,
+        0.5370545864804057,
+        0.06281918029582495
+      ],
+      "min": [
+        -0.9405760692571743,
+        -0.5371026324247463,
+        -0.0629582034563168
+      ],
+      "type": "VEC3"
+    },
+    {
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC3"
+    },
+    {
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC2"
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 1946
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 1952,
+      "byteLength": 193
+    }
+  ],
+  "buffers": [
+    {
+      "name": "monitordraco",
+      "byteLength": 2152,
+      "uri": "data:application/octet-stream;base64,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"
+    }
+  ],
+  "extensionsRequired": [
+    "KHR_draco_mesh_compression"
+  ],
+  "extensionsUsed": [
+    "KHR_draco_mesh_compression"
+  ]
+}

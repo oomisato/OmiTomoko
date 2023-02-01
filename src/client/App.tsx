@@ -121,9 +121,7 @@ interface Handler{
 export default function App(){
 const setRef=useRef({} as Handler) 
 const scroll=useRef<number>(0)
-const loadRef=useRef()
-const [scrollPer,setScrollPer]=useState<number>()
-const [modelLoaded, setLoaded]=useState(false);
+const [modelLoaded, setLoaded]=useState<boolean>(false);
 const overlay=useRef<HTMLDivElement>(null);
 const scrollPageTop=()=>{
   setRef.current?.scrolltoTop()
@@ -133,24 +131,16 @@ const scrollPageD=()=>{
   }
   const scrollPageFunc = () => {
     setRef.current?.scrolltoVid()
+  
   };
   const scrollPageC = () => {
-    console.log("contact")
     setRef.current?.scrolltoContact()
   };
 
 function setLoadComp(){
   setLoaded(true)
 }
-  // function handleLoad(){
-  //   loadRef.current.loadComplete()
-  // }
-// const [loaded,setLoaded]=useState(false)
-// useEffect(()=>{
-// setTimeout(()=>{
-//   setLoaded(true)
-// },3000);
-// },[])
+
   return(
   <>
     <ThemeProvider theme={theme}>
@@ -177,7 +167,7 @@ function setLoadComp(){
         <color attach="background" args={[`${theme.bodyBlue}`]} />
 
         <Scene />
-        <Videos />
+       <Videos />
 </Suspense>
       </Canvas>
 

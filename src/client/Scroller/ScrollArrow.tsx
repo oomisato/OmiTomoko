@@ -152,8 +152,8 @@ const isInViewDesign=useInView(designRef)
 
 const clickToMove=()=>{
   if(isInViewContact){scrollintoTop()
-  }else if(isInViewDesign){console.log('move ro ') ;scrollintoContact()
-  }else if(isInViewVideo){console.log('dd ') ;scrollintoDesign() 
+  }else if(isInViewDesign){scrollintoContact()
+  }else if(isInViewVideo){scrollintoDesign() 
   }else {scrollintoVideo()}}
 
     return(
