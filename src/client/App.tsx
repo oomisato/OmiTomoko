@@ -85,12 +85,12 @@ function Scene (){
                 Math.sin(90*(Math.PI/180))*midOfR,
                 z]}/>
 
-              <Mansion
+              {/* <Mansion
                position={
                [Math.cos(180*(Math.PI/180))*(midOfR-0.3),
                Math.sin(180*(Math.PI/180))*(midOfR-0.3),
                z+0.2]} 
-              />
+              /> */}
                    <Shoe
                 position={
                   [Math.cos(340*(Math.PI/180))*midOfR,
