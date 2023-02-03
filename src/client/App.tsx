@@ -1,7 +1,7 @@
 import React,{Suspense, useEffect, useRef, useState} from "react";
 import * as THREE from "three";
-import { ThemeProvider } from 'styled-components';
-import {Canvas} from '@react-three/fiber';
+import styled, { ThemeProvider } from 'styled-components';
+import {Canvas, useThree} from '@react-three/fiber';
 import {Loader} from "@react-three/drei";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import gsap from "gsap";
@@ -13,7 +13,7 @@ import Design from "./components/Design";
 import Videos from "./components/Videos";
 import LoaderDom from "./LoaderDom";
 import Mansion from "./Models/Mansion";
-import theme from './Theme'
+import theme,{size} from './Theme'
 
 
 
@@ -22,25 +22,20 @@ gsap.registerPlugin(ScrollTrigger);
  
 
 
-
-
-
-
-
 function Scene (){
     const group=useRef<THREE.Mesh>(null!);
     const[groupRotationX,setRingRotation]=useState(0)
     const [ringHPos]=useState({height:0})
     const radius=3.5
     const innerRadius=2.1
-    const midOfR=(radius-innerRadius)/2+innerRadius+0.5
+    const midOfR=(radius-innerRadius)/2 + innerRadius+0.5
     const z=0.5
     const rotateNum=-50
-
+    const { viewport, size } = useThree()
     var i =1;
 
   useEffect(()=>{
-    
+    console.log(size.width)
 
       var tl= gsap.timeline()
       tl.to(group.current,{
@@ -65,7 +60,7 @@ function Scene (){
           end:'60% top',
         }
       })
-    },[])
+    },[viewport,size])
 
     return(
 
@@ -84,13 +79,14 @@ function Scene (){
                 [Math.cos(90*(Math.PI/180))*midOfR,
                 Math.sin(90*(Math.PI/180))*midOfR,
                 z]}/>
-
-              {/* <Mansion
-               position={
-               [Math.cos(180*(Math.PI/180))*(midOfR-0.3),
-               Math.sin(180*(Math.PI/180))*(midOfR-0.3),
-               z+0.2]} 
-              /> */}
+               {size.width>=1440 &&
+               <Mansion
+                position={
+                [Math.cos(180*(Math.PI/180))*(midOfR-0.3),
+                Math.sin(180*(Math.PI/180))*(midOfR-0.3),
+                z+0.2]} 
+                />
+              } 
                    <Shoe
                 position={
                   [Math.cos(340*(Math.PI/180))*midOfR,

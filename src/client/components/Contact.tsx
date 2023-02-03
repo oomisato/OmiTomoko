@@ -204,7 +204,7 @@ const sendMail=async({
             alert(res.data.message)
         }
     }catch(error){
-        alert("Message Failed to Sendssss")
+        alert("Message Failed to Send")
     }
 }
 

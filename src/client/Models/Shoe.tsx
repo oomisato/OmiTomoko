@@ -102,10 +102,10 @@ type GLTFResult=GLTFLoader & {
       <mesh castShadow receiveShadow  
       geometry={nodes.shoe.geometry} 
       material={materials.shoe} 
-      
-      />
+      scale={[1.3,1.3,1.3]}      />
         <mesh castShadow receiveShadow  
       geometry={nodes.air.geometry} 
+      scale={[1.3,1.3,1.3]}
 >
 <meshPhysicalMaterial clearcoat={1} clearcoatRoughness={0} color="hotpink" transmission={1} thickness={2} roughness={0} />
   </mesh>      
